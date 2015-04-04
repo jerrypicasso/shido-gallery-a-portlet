@@ -1,0 +1,52 @@
+.shido-gallery-a {
+	/* padding: 20px 0; */
+	text-align: center;
+	
+	table {
+		margin: 0 auto;
+		
+		td {
+			overflow:hidden;
+			text-align:center;
+			vertical-align:top;
+			
+			div.video-btn {
+				background-image:url(../image/play.png);
+				background-repeat:no-repeat;
+				background-size:100px 100px;
+				background-position:center;
+			}
+			
+			div.mask {
+				position: absolute;
+				cursor: pointer;
+			}
+			
+			div.mask:hover {
+				opacity: 0.2;
+				background-color: #ffffff;
+			}
+			
+			span.img-title {
+				display:block;
+				font-size:16px;
+				font-weight:bold;
+				color:black;
+				text-align:left;
+				padding: 10px 0;
+			}
+			
+			span.img-summary {
+				display:block;
+				font-size:12px;
+				color:gray;
+				text-align:left;
+			}
+			
+			span.img-tags {
+				display:block;
+				text-align:left;
+			}
+		}
+	}
+}
