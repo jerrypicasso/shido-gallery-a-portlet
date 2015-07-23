@@ -16,6 +16,10 @@
 	String imgHeight = preferences.getValue(ShidoGalleryConfigurationAction.SHIDO_GALLERY_IMG_HEIGHT, StringPool.BLANK);
 	float spacing = Float.parseFloat(preferences.getValue(ShidoGalleryConfigurationAction.SHIDO_GALLERY_SPACING, 
 			ShidoGalleryConfigurationAction.SHIDO_GALLERY_SPACING_DEFAULT_VAL));
+	String background = preferences.getValue(ShidoGalleryConfigurationAction.SHIDO_GALLERY_BACKGROUND, 
+			ShidoGalleryConfigurationAction.SHIDO_GALLERY_BACKGROUND_DEFAULT_VAL);
+	String alignment = preferences.getValue(ShidoGalleryConfigurationAction.SHIDO_GALLERY_TITLE_ALIGNMENT, 
+			ShidoGalleryConfigurationAction.SHIDO_GALLERY_TITLE_ALIGNMENT_DEFAULT_VAL);
 	
 	String[] imgUrls = preferences.getValues(ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_IMG_URL, StringPool.EMPTY_ARRAY);
 	String[] links = preferences.getValues(ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_LINK, StringPool.EMPTY_ARRAY);
@@ -24,7 +28,7 @@
 	String[] tags = preferences.getValues(ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_TAG, StringPool.EMPTY_ARRAY);
 	String[] isVideos = preferences.getValues(ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_IS_VIDEO, StringPool.EMPTY_ARRAY);
 %>
-<div id="<portlet:namespace/>shido-gallery-a" class="shido-gallery-a">
+<div id="<portlet:namespace/>shido-gallery-a" class="shido-gallery-a" style="background-color:<%= background %>">
 	<table>
 		<tr>
 <%
@@ -63,12 +67,12 @@
 <%
 		if(i < titles.length && titles[i] != null && titles[i].length() > 0) {
 %>
-				<span class="img-title" style="width:<%=imgWidth%>px;"><%= titles[i].replaceAll("\\n", "<br/>")%></span>
+				<span class="img-title" style="width:<%= imgWidth %>px;text-align:<%= alignment %>"><%= titles[i].replaceAll("\\n", "<br/>")%></span>
 <%
 		}
 		if(i < summaries.length && summaries[i] != null && summaries[i].length() > 0) {
 %>
-				<span class="img-summary" style="width:<%=imgWidth%>px;"><%= summaries[i]%></span>
+				<span class="img-summary" style="width:<%= imgWidth %>px;"><%= summaries[i] %></span>
 <%
 		}
 %>
@@ -81,7 +85,7 @@
 <%
 	for(int i = 0; i < imgUrls.length; i++) {
 %>
-			<td style="padding:0 <%= spacing/2%>px;">
+			<td style="padding:0 <%= spacing/2 %>px;">
 <%
 		if(i < tags.length && tags[i] != null && tags[i].length() > 0) {
 %>

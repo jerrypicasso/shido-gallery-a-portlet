@@ -19,6 +19,8 @@ public class ShidoGalleryConfigurationAction extends DefaultConfigurationAction 
 	public static final String SHIDO_GALLERY_IMG_WIDTH = "SHIDO_GALLERY_IMG_WIDTH";
 	public static final String SHIDO_GALLERY_IMG_HEIGHT = "SHIDO_GALLERY_IMG_HEIGHT";
 	public static final String SHIDO_GALLERY_SPACING = "SHIDO_GALLERY_SPACING";
+	public static final String SHIDO_GALLERY_BACKGROUND = "SHIDO_GALLERY_BACKGROUND";
+	public static final String SHIDO_GALLERY_TITLE_ALIGNMENT = "SHIDO_GALLERY_TITLE_ALIGNMENT";
 	
 	public static final String SHIDO_GALLERY_CELL_IS_VIDEO = "SHIDO_GALLERY_CELL_IS_VIDEO";
 	public static final String SHIDO_GALLERY_CELL_IMG_URL = "SHIDO_GALLERY_CELL_IMG_URL";
@@ -28,6 +30,8 @@ public class ShidoGalleryConfigurationAction extends DefaultConfigurationAction 
 	public static final String SHIDO_GALLERY_CELL_TAG = "SHIDO_GALLERY_CELL_TAG";
 	
 	public static final String SHIDO_GALLERY_SPACING_DEFAULT_VAL = "10";
+	public static final String SHIDO_GALLERY_BACKGROUND_DEFAULT_VAL = "#ffffff";
+	public static final String SHIDO_GALLERY_TITLE_ALIGNMENT_DEFAULT_VAL = "left";
 	
 	private static final String CONFIG_JSP = "/WEB-INF/config/config.jsp";
 	private static final String SUCCESS = "success";
@@ -39,6 +43,8 @@ public class ShidoGalleryConfigurationAction extends DefaultConfigurationAction 
 		renderRequest.setAttribute(SHIDO_GALLERY_IMG_WIDTH, preferences.getValue(SHIDO_GALLERY_IMG_WIDTH, StringPool.BLANK));
 		renderRequest.setAttribute(SHIDO_GALLERY_IMG_HEIGHT, preferences.getValue(SHIDO_GALLERY_IMG_HEIGHT, StringPool.BLANK));
 		renderRequest.setAttribute(SHIDO_GALLERY_SPACING, preferences.getValue(SHIDO_GALLERY_SPACING, StringPool.BLANK));
+		renderRequest.setAttribute(SHIDO_GALLERY_BACKGROUND, preferences.getValue(SHIDO_GALLERY_BACKGROUND, StringPool.BLANK));
+		renderRequest.setAttribute(SHIDO_GALLERY_TITLE_ALIGNMENT, preferences.getValue(SHIDO_GALLERY_TITLE_ALIGNMENT, StringPool.BLANK));
 		renderRequest.setAttribute(SHIDO_GALLERY_CELL_IS_VIDEO, preferences.getValues(SHIDO_GALLERY_CELL_IS_VIDEO, StringPool.EMPTY_ARRAY));
 		renderRequest.setAttribute(SHIDO_GALLERY_CELL_IMG_URL, preferences.getValues(SHIDO_GALLERY_CELL_IMG_URL, StringPool.EMPTY_ARRAY));
 		renderRequest.setAttribute(SHIDO_GALLERY_CELL_LINK, preferences.getValues(SHIDO_GALLERY_CELL_LINK, StringPool.EMPTY_ARRAY));
@@ -56,6 +62,8 @@ public class ShidoGalleryConfigurationAction extends DefaultConfigurationAction 
 			String imgWidth = ParamUtil.getString(actionRequest, SHIDO_GALLERY_IMG_WIDTH);
 			String imgHeight = ParamUtil.getString(actionRequest, SHIDO_GALLERY_IMG_HEIGHT);
 			String spacing = ParamUtil.getString(actionRequest, SHIDO_GALLERY_SPACING);
+			String background = ParamUtil.getString(actionRequest, SHIDO_GALLERY_BACKGROUND);
+			String alignment = ParamUtil.getString(actionRequest, SHIDO_GALLERY_TITLE_ALIGNMENT);
 			String[] isVideos = ParamUtil.getParameterValues(actionRequest, SHIDO_GALLERY_CELL_IS_VIDEO);
 			String[] imgUrls = ParamUtil.getParameterValues(actionRequest, SHIDO_GALLERY_CELL_IMG_URL);
 			String[] links = ParamUtil.getParameterValues(actionRequest, SHIDO_GALLERY_CELL_LINK);
@@ -66,6 +74,8 @@ public class ShidoGalleryConfigurationAction extends DefaultConfigurationAction 
 			preferences.setValue(SHIDO_GALLERY_IMG_WIDTH, imgWidth);
 			preferences.setValue(SHIDO_GALLERY_IMG_HEIGHT, imgHeight);
 			preferences.setValue(SHIDO_GALLERY_SPACING, spacing);
+			preferences.setValue(SHIDO_GALLERY_BACKGROUND, background);
+			preferences.setValue(SHIDO_GALLERY_TITLE_ALIGNMENT, alignment);
 			preferences.setValues(SHIDO_GALLERY_CELL_IS_VIDEO, isVideos);
 			preferences.setValues(SHIDO_GALLERY_CELL_IMG_URL, imgUrls);
 			preferences.setValues(SHIDO_GALLERY_CELL_LINK, links);

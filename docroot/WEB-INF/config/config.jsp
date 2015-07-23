@@ -1,3 +1,4 @@
+<%@page import="com.liferay.portal.kernel.util.StringPool"%>
 <%@page import="com.njshido.component.ShidoGalleryConfigurationAction" %>
 <%@ page pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
@@ -15,6 +16,8 @@
 	String imgWidth = String.valueOf(request.getAttribute(ShidoGalleryConfigurationAction.SHIDO_GALLERY_IMG_WIDTH));	
 	String imgHeight = String.valueOf(request.getAttribute(ShidoGalleryConfigurationAction.SHIDO_GALLERY_IMG_HEIGHT));
 	String spacing = String.valueOf(request.getAttribute(ShidoGalleryConfigurationAction.SHIDO_GALLERY_SPACING));
+	String background = String.valueOf(request.getAttribute(ShidoGalleryConfigurationAction.SHIDO_GALLERY_BACKGROUND));
+	String alignment = String.valueOf(request.getAttribute(ShidoGalleryConfigurationAction.SHIDO_GALLERY_TITLE_ALIGNMENT));
 	
 	String[] isVideos = (String[]) request.getAttribute(ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_IS_VIDEO);
 	String[] imgUrls = (String[]) request.getAttribute(ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_IMG_URL);
@@ -44,6 +47,18 @@
 				<span>单元间隙：</span>
 				<input name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_SPACING%>" type="number" style="width:30%;"  value="<%=spacing%>"/>
 			</li>
+			<li>
+				<span>背景颜色：</span>
+				<input name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_BACKGROUND%>" type="text" style="width:30%;"  value="<%=background%>"/>
+			</li>
+			<li>
+				<span>标题对齐方式：</span>
+				<select name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_TITLE_ALIGNMENT%>" style="width:30%;">
+					<option value="left" <%= "left".equals(alignment) ? "selected":"" %>>居左</option>
+					<option value="center" <%= "center".equals(alignment) ? "selected":"" %>>居中</option>
+					<option value="right" <%= "right".equals(alignment) ? "selected":"" %>>居右</option>
+				</select>
+			</li>
 		</ul>
 	</div>
 	
@@ -55,26 +70,31 @@
 			isVideo = isVideos[i];
 		}
 %>
-			<ul id="<portlet:namespace/>url_<%= i%>">
+			<ul id="<portlet:namespace/>url_<%= i %>">
 			   	<li>
 			   		<span>图片地址：</span>
-			   		<input type="text" style="width:50%;" value="<%= imgUrls[i]%>" name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_IMG_URL%>"/>
+			   		<input type="text" style="width:50%;" value="<%= i < imgUrls.length && imgUrls[i] != null ? imgUrls[i] : StringPool.BLANK%>" 
+			   			name="<portlet:namespace/><%= ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_IMG_URL %>"/>
 			   	</li>
 			   	<li>
 			   		<span>标题：</span>
-			   		<textarea style="width:50%;" name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_TITLE%>"><%= titles[i]%></textarea>
+			   		<textarea name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_TITLE%>" 
+			   			style="width:50%;"><%= i < titles.length && titles[i] != null ? titles[i] : StringPool.BLANK %></textarea>
 			   	</li>
 			   	<li>
 			   		<span>简介：</span>
-			   		<input type="text" style="width:50%;" value="<%= summaries[i]%>" name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_SUMMARY%>"/>
+			   		<input type="text" style="width:50%;" value="<%= i < summaries.length && summaries[i] != null ? summaries[i] : StringPool.BLANK %>" 
+			   			name="<portlet:namespace/><%= ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_SUMMARY %>"/>
 			   	</li>
 			   	<li>
 			   		<span>标签(用逗号隔开)：</span>
-			   		<input type="text" style="width:50%;" value="<%= tags[i]%>" name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_TAG%>"/>
+			   		<input type="text" style="width:50%;" value="<%= i < tags.length && tags[i] != null ? tags[i] : StringPool.BLANK %>" 
+			   			name="<portlet:namespace/><%= ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_TAG %>"/>
 			   	</li>
 			   	<li>
 			   		<span>链接地址：</span>
-			   		<input type="text" required="required" style="width:50%;" value="<%= links[i]%>" name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_LINK%>"/>
+			   		<input type="text" style="width:50%;" value="<%= i < links.length && links[i] != null ? links[i] : StringPool.BLANK %>" 
+			   			name="<portlet:namespace/><%=ShidoGalleryConfigurationAction.SHIDO_GALLERY_CELL_LINK%>" required="required"/>
 			   	</li>
 			   	<li>
 			   		<span>视频模式：</span>
